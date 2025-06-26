@@ -22,6 +22,16 @@ public class ventanaProductos extends javax.swing.JFrame {
     public ventanaProductos(JFrame ventanaPrincipal) {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);//Con esta linea no cerramos el programa completo, solo la ventana
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+         @Override
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                ventanaPrincipal.setVisible(true);
+            }
+         });
+        
         cargarCategoriasEnCombo();
         cargarTabla();
     }
@@ -395,22 +405,24 @@ public class ventanaProductos extends javax.swing.JFrame {
 
     private void tableProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductosMouseClicked
         int filaSeleccionada = tableProductos.getSelectedRow();
-    if (filaSeleccionada >= 0) {
-        productoSeleccionadoId = (Long) tableProductos.getValueAt(filaSeleccionada, 0);
-        String nombre = (String) tableProductos.getValueAt(filaSeleccionada, 1);
-        String categoriaNombreEnTabla = (String) tableProductos.getValueAt(filaSeleccionada, 2); 
-
-        NombreTXT.setText(nombre);
+        if (filaSeleccionada >= 0) {
+             productoSeleccionadoId = (Long) tableProductos.getValueAt(filaSeleccionada, 0);
+            String nombre = (String) tableProductos.getValueAt(filaSeleccionada, 1);
+            String categoriaNombreEnTabla = (String) tableProductos.getValueAt(filaSeleccionada, 2);
+            Double precio = (Double) tableProductos.getValueAt(filaSeleccionada, 3);
+        
+            NombreTXT.setText(nombre);
+            precioTXT.setText(String.valueOf(precio));
 
         // Seleccion de item del comboBOx
-        DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) categoriaCombo.getModel();
-        for (int i = 0; i < model.getSize(); i++) {
-            if (model.getElementAt(i).equals(categoriaNombreEnTabla)) {
-                categoriaCombo.setSelectedIndex(i);
-                break;
+            DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) categoriaCombo.getModel();
+            for (int i = 0; i < model.getSize(); i++) {
+                if (model.getElementAt(i).equals(categoriaNombreEnTabla)) {
+                    categoriaCombo.setSelectedIndex(i);
+                    break;
+                }
             }
         }
-    }
     }//GEN-LAST:event_tableProductosMouseClicked
 
     //NO TOCAR ESTO

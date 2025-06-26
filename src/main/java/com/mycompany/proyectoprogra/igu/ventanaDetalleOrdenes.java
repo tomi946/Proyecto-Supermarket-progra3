@@ -30,6 +30,15 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
     public ventanaDetalleOrdenes(JFrame ventanaPrincipal) {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                ventanaPrincipal.setVisible(true);
+             }
+           });
+        
         cargarTablaDetalleOrdenes();
         cargarCategoriasEnCombo();
     }
@@ -275,7 +284,7 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
             "ID Orden: %s\n" +
             "ID Cliente: %s\n" +
             "ID Producto: %s\n" +
-            "Fecha de Orden: %s\n" + // 👈 Agregado aquí
+            "Fecha de Orden: %s\n" + 
             "Nombre Producto: %s\n" +
             "Cantidad: %s\n" +
             "Precio Unitario: %s\n" +

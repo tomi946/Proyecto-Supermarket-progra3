@@ -51,7 +51,7 @@ public class ControladoraController {
     
     public void modificarCliente(long idCliente, String nuevoNombre) throws NonexistentEntityException, Exception {
         
-        Clientes cliente = ClientePao.findClienteConOrdenes(idCliente); // Utiliza el findClientes de tu ClientesJpaController
+        Clientes cliente = ClientePao.findClienteConOrdenes(idCliente); 
        
         if (cliente == null) {
             throw new NonexistentEntityException("El cliente con ID " + idCliente + " no existe para modificar.");
@@ -97,7 +97,7 @@ public class ControladoraController {
     
     //Categorias
     public List<Categorias> traerCategorias() {
-     return categoriaPao.findCategoriasEntities(); // O el método que devuelva todas las categorías
+     return categoriaPao.findCategoriasEntities(); 
 }
 
     //ENVIOS

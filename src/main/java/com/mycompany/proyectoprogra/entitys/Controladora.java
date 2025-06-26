@@ -39,15 +39,15 @@ public void eliminarCliente(long id){
     }
 }
 
-public void modificarCliente(long id, String nuevoNombre) throws Exception { // IMPORTANTE: Agrega 'throws Exception'
+public void modificarCliente(long id, String nuevoNombre) throws Exception { 
         try {
             controladoraPao.modificarCliente(id, nuevoNombre); // Llama al método de ControladoraController
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, "Cliente no encontrado para modificar (desde Controladora)", ex);
-            throw ex; // Relanza la excepción para que la IGU pueda manejarla
+            throw ex; 
         } catch (Exception ex) {
             Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, "Error inesperado al modificar cliente (desde Controladora)", ex);
-            throw ex; // Relanza cualquier otra excepción
+            throw ex; 
         }
 }
 

@@ -29,6 +29,14 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     public ventanaOrdenes(JFrame ventanaPrincipal) {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                ventanaPrincipal.setVisible(true); 
+             }
+           });
 
         inicializarTablaDetallesOrden();
 
@@ -77,7 +85,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     private void cargarModosEnvioConThread() {
         Thread hiloEnvios = new Thread(() -> {
             try {
-                // Simulamos obtenerlo (puede venir de BD si querés)
+                
                 String[] modosEnvio = {
                     "Estándar",
                     "Express",
@@ -85,7 +93,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                     "Internacional"
                 };
 
-                // Actualización segura de la UI
+                
                 SwingUtilities.invokeLater(() -> {
                     jComboBox1.setModel(new DefaultComboBoxModel<>(modosEnvio));
                 });
@@ -101,9 +109,9 @@ public class ventanaOrdenes extends javax.swing.JFrame {
         hiloEnvios.start();
     }
     
-    //  Métodos de Carga de Datos en la UI 
+   
     private void cargarTablaProductos() {
-        String[] columnas = {"ID", "Nombre", "Categoría", "Precio Unitario"}; // Agrega Precio Unitario
+        String[] columnas = {"ID", "Nombre", "Categoría", "Precio Unitario"}; 
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         List<Productos> listaProductos = control.traerProductos();
@@ -161,7 +169,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                 detalle.getProductos().getIdProducto(),
                 detalle.getProductos().getNombreProducto(),
                 detalle.getCantidad(),
-                detalle.getProductos().getPrecioUnitario(), // Muestra el precio unitario del producto
+                detalle.getProductos().getPrecioUnitario(), 
                 detalle.getTotalVenta(),
                 detalle.getDescuento(),
                 detalle.getGanancia()
@@ -584,7 +592,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                         detallesTemp.add(detalle);
                     }
 
-                    // 🧩 Agregar a jTable1: nombre del producto y cantidad
+                    
                     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
                     boolean filaActualizada = false;
 
@@ -602,7 +610,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                         modelo.addRow(new Object[]{producto.getNombreProducto(), cantidad});
                     }
 
-                    actualizarTotalOrden(); // 🧮 Calcula y actualiza total_orden
+                    actualizarTotalOrden(); 
 
                     JOptionPane.showMessageDialog(this, "Producto agregado a la orden (temporalmente).");
                     cantidadTXT.setText("");
@@ -650,7 +658,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     }//GEN-LAST:event_clientesComboActionPerformed
 
   
-    // --- Métodos de Utilidad ---
+   
     private void limpiarCamposOrden() {
         EstadoTXT.setText("");
         CiudadTXT.setText("");
@@ -659,7 +667,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
         cantidadTXT.setText("");
         nombreTXT.setText("");
         detallesTemp.clear(); // Limpia la lista de detalles temporales
-        actualizarTablaDetallesOrden(); // Refresca la tabla de detalles para mostrarla vacía
+        actualizarTablaDetallesOrden(); // Refresca la tabla de detalles para mostrarla vacia
     }
     
     

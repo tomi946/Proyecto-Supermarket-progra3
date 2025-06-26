@@ -20,10 +20,16 @@ public class ventanaCliente extends javax.swing.JFrame {
     private JFrame ventanaPrincipal;
     
     public ventanaCliente(JFrame ventanaPrincipal) { 
-
         initComponents();
-
         this.ventanaPrincipal = ventanaPrincipal;
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() { 
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                ventanaPrincipal.setVisible(true); 
+             }
+           });
     }
     
     public ventanaCliente() {

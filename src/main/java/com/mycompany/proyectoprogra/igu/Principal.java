@@ -111,8 +111,7 @@ public class Principal extends javax.swing.JFrame {
     private void clientesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesBTNActionPerformed
 
         ventanaCliente ventana = new ventanaCliente(this);
-        ventana.setVisible(true);
-        ventana.setLocationRelativeTo(null);
+        this.setVisible(false);
 
         new Thread(() -> {
             try {
@@ -124,12 +123,15 @@ public class Principal extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }).start();
+        
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
     }//GEN-LAST:event_clientesBTNActionPerformed
 
     private void ordenesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenesBTNActionPerformed
         
         ventanaOrdenes ventanaOrdenes = new ventanaOrdenes(this);
-        
+        this.setVisible(false);
         new Thread(() -> {
             try {
                 Thread.sleep(300);
@@ -146,6 +148,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void productosBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosBTNActionPerformed
         ventanaProductos ventanaProductos = new ventanaProductos(this);
+        this.setVisible(false);
         new Thread(() -> {
             try {
                 Thread.sleep(300);
@@ -161,6 +164,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void detalleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detalleBTNActionPerformed
         ventanaDetalleOrdenes ventanaDetalle = new ventanaDetalleOrdenes(this);
+        this.setVisible(false);
+
         new Thread(() -> {
             try {
                 Thread.sleep(300);

@@ -5,6 +5,7 @@ com\mycompany\proyectoprogra\igu\ventanaDetalleOrdenes$4.class
 com\mycompany\proyectoprogra\igu\ventanaOrdenes$6.class
 com\mycompany\proyectoprogra\entitys\DetalleordenesPK.class
 com\mycompany\proyectoprogra\igu\ventanaProductos$2.class
+com\mycompany\proyectoprogra\igu\ventanaProductos$9.class
 com\mycompany\proyectoprogra\igu\ventanaProductos$5.class
 com\mycompany\proyectoprogra\entitys\Detalleordenes.class
 com\mycompany\proyectoprogra\igu\ventanaOrdenes$2.class
@@ -12,6 +13,7 @@ com\mycompany\proyectoprogra\igu\ventanaCliente$2.class
 com\mycompany\proyectoprogra\igu\ventanaDetalleOrdenes$1.class
 com\mycompany\proyectoprogra\igu\Principal$1.class
 com\mycompany\proyectoprogra\igu\ventanaCliente$1.class
+com\mycompany\proyectoprogra\igu\ventanaOrdenes$11.class
 com\mycompany\proyectoprogra\igu\Principal$4.class
 com\mycompany\proyectoprogra\igu\ventanaDetalleOrdenes.class
 com\mycompany\proyectoprogra\igu\ventanaProductos$8.class
@@ -23,6 +25,7 @@ com\mycompany\proyectoprogra\igu\ventanaOrdenes$3.class
 com\mycompany\proyectoprogra\controllers\exceptions\IllegalOrphanException.class
 com\mycompany\proyectoprogra\entitys\Envios.class
 com\mycompany\proyectoprogra\controllers\DetalleordenesJpaController.class
+com\mycompany\proyectoprogra\igu\ventanaCliente$8.class
 com\mycompany\proyectoprogra\igu\ventanaProductos$4.class
 com\mycompany\proyectoprogra\controllers\ControladoraController.class
 com\mycompany\proyectoprogra\controllers\ProductosJpaController.class
@@ -37,6 +40,7 @@ com\mycompany\proyectoprogra\controllers\ClientesJpaController.class
 com\mycompany\proyectoprogra\entitys\Clientes.class
 com\mycompany\proyectoprogra\igu\ventanaProductos.class
 com\mycompany\proyectoprogra\igu\ventanaCliente$7.class
+com\mycompany\proyectoprogra\igu\ventanaDetalleOrdenes$6.class
 com\mycompany\proyectoprogra\igu\ventanaOrdenes$8.class
 com\mycompany\proyectoprogra\entitys\Productos.class
 com\mycompany\proyectoprogra\igu\ventanaCliente$4.class
