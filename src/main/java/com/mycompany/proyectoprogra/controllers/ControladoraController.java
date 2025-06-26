@@ -134,35 +134,30 @@ public class ControladoraController {
     // --- Método CLAVE para guardar una Orden completa ---
     public boolean guardarOrdenCompleta(Date fechaOrden, long idCliente, String modoEnvio, String ciudad, String estado, int codigoPostal, List<Detalleordenes> detallesTemp) {
         try {
-            // 1. Validar Cliente
             Clientes cliente = ClientePao.findClientes(idCliente);
             if (cliente == null) {
                 System.out.println("Error: Cliente con ID " + idCliente + " no encontrado.");
                 return false;
             }
 
-            // 2. Crear y persistir el Envío
             Envios nuevoEnvio = new Envios();
             nuevoEnvio.setModoEnvio(modoEnvio);
             nuevoEnvio.setCiudad(ciudad);
             nuevoEnvio.setEstado(estado);
             nuevoEnvio.setCodigoPostal(codigoPostal);
-            enviosPao.create(nuevoEnvio); // Persiste el envío para que tenga un ID
+            enviosPao.create(nuevoEnvio); 
 
-            // 3. Crear y persistir la Orden
             Ordenes nuevaOrden = new Ordenes();
             java.sql.Date fechaSQL = new java.sql.Date(fechaOrden.getTime());
             nuevaOrden.setFechaOrden(fechaSQL);
 
-            nuevaOrden.setIdCliente(cliente); // Asigna el objeto Cliente
-            nuevaOrden.setIdEnvio(nuevoEnvio); // Asigna el objeto Envios
+            nuevaOrden.setIdCliente(cliente); 
+            nuevaOrden.setIdEnvio(nuevoEnvio); 
 
-            // Inicializa la colección de detalles si no está ya inicializada
             if (nuevaOrden.getDetalleordenesCollection() == null) {
                 nuevaOrden.setDetalleordenesCollection(new java.util.ArrayList<>());
             }
-            ordenesPao.create(nuevaOrden); // Persiste la orden para que tenga su ID
-            // 4. Persistir los Detalleordenes
+            ordenesPao.create(nuevaOrden); 
             for (Detalleordenes detalle : detallesTemp) {
                 DetalleordenesPK pk = new DetalleordenesPK(
                     nuevaOrden.getIdOrden(),

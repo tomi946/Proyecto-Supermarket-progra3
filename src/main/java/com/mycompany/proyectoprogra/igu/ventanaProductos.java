@@ -28,12 +28,12 @@ public class ventanaProductos extends javax.swing.JFrame {
     
     
     private void cargarCategoriasEnCombo() {
-    List<Categorias> categorias = control.traerCategorias();
-    categoriaCombo.removeAllItems();
-    for (Categorias cat : categorias) {
-        categoriaCombo.addItem(cat.toString()); 
+        List<Categorias> categorias = control.traerCategorias();
+        categoriaCombo.removeAllItems();
+        for (Categorias cat : categorias) {
+            categoriaCombo.addItem(cat.toString()); 
+        }
     }
-}
     
     
     public void cargarTabla() {
@@ -115,7 +115,7 @@ public class ventanaProductos extends javax.swing.JFrame {
     }
 
 
-private void modificarProducto() {
+    private void modificarProducto() {
         String nuevoNombre = NombreTXT.getText();
         String nuevoPrecioTexto = precioTXT.getText(); // Capturar el nuevo precio
         String categoriaStringSeleccionada = (String) categoriaCombo.getSelectedItem();
@@ -214,6 +214,7 @@ private void modificarProducto() {
         precioTXT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         volverBTN = new javax.swing.JButton();
+        modificarBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProductos = new javax.swing.JTable();
 
@@ -223,7 +224,7 @@ private void modificarProducto() {
 
         GuardarBTN.setBackground(new java.awt.Color(153, 255, 153));
         GuardarBTN.setForeground(new java.awt.Color(0, 0, 0));
-        GuardarBTN.setText("Guardar producto");
+        GuardarBTN.setText("Guardar nuevo producto");
         GuardarBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         GuardarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -265,6 +266,20 @@ private void modificarProducto() {
             }
         });
 
+        modificarBTN.setBackground(new java.awt.Color(204, 255, 255));
+        modificarBTN.setForeground(new java.awt.Color(0, 0, 0));
+        modificarBTN.setText("Modificar");
+        modificarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarBTNMouseClicked(evt);
+            }
+        });
+        modificarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -296,7 +311,9 @@ private void modificarProducto() {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(EliminarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EliminarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(GuardarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)))))
@@ -319,10 +336,12 @@ private void modificarProducto() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(categoriaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(130, 130, 130)
+                .addGap(131, 131, 131)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GuardarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EliminarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(modificarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(EliminarBTN)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -361,7 +380,7 @@ private void modificarProducto() {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -413,6 +432,14 @@ private void modificarProducto() {
         this.dispose(); 
     }//GEN-LAST:event_volverBTNActionPerformed
 
+    private void modificarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarBTNMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarBTNMouseClicked
+
+    private void modificarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBTNActionPerformed
+        modificarProducto();
+    }//GEN-LAST:event_modificarBTNActionPerformed
+
   
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -425,6 +452,7 @@ private void modificarProducto() {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificarBTN;
     private javax.swing.JTextField precioTXT;
     private javax.swing.JTable tableProductos;
     private javax.swing.JButton volverBTN;

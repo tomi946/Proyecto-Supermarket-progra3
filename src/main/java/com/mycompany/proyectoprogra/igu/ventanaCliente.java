@@ -20,9 +20,9 @@ public class ventanaCliente extends javax.swing.JFrame {
     private JFrame ventanaPrincipal;
     
     public ventanaCliente(JFrame ventanaPrincipal) { 
-        System.out.println("Empieza la carga de los componentes");
+
         initComponents();
-        System.out.println("Termina la carga de los componentes");
+
         this.ventanaPrincipal = ventanaPrincipal;
     }
     

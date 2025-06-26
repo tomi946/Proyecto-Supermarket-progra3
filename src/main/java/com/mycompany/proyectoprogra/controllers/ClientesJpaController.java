@@ -34,7 +34,7 @@ public class ClientesJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-     public ClientesJpaController() {
+    public ClientesJpaController() {
         emf = com.mycompany.proyectoprogra.controllers.JpaUtil.getEntityManagerFactory();
     }
     public void create(Clientes clientes) throws PreexistingEntityException, Exception {

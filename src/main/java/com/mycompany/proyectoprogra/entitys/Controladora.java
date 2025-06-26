@@ -4,6 +4,7 @@ package com.mycompany.proyectoprogra.entitys;
 import com.mycompany.proyectoprogra.controllers.ControladoraController;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -85,6 +86,7 @@ public Productos traerProducto(long idProducto) {
 public List<Categorias> traerCategorias() {
     return controladoraPao.traerCategorias();
 }
+
 
 //envios
 public void agregarEnvio(String modoEnvio, String ciudad, String estado, int codigoPostal){

@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectoprogra.igu;
 
+import jakarta.persistence.EntityManager;
+
 /**
  *
  * @author totol

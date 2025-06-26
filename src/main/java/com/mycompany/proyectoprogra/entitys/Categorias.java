@@ -108,10 +108,6 @@ public class Categorias implements Serializable {
         return true;
     }
 
-   // @Override
-//public String toString() {
-    //return categoria + " - " + subcategoria;
-//}
 
 @Override
     public String toString() {
