@@ -49,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
                 clientesBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(clientesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 280, 121));
+        jPanel1.add(clientesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 280, 100));
 
         ordenesBTN.setBackground(new java.awt.Color(66, 66, 66));
         ordenesBTN.setForeground(new java.awt.Color(255, 255, 255));
@@ -60,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
                 ordenesBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(ordenesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 280, 130));
+        jPanel1.add(ordenesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 280, 100));
 
         productosBTN.setBackground(new java.awt.Color(66, 66, 66));
         productosBTN.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,7 +71,7 @@ public class Principal extends javax.swing.JFrame {
                 productosBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(productosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 280, 121));
+        jPanel1.add(productosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 280, 100));
 
         detalleBTN.setBackground(new java.awt.Color(66, 66, 66));
         detalleBTN.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
                 detalleBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(detalleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 280, 130));
+        jPanel1.add(detalleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, 280, 100));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 80)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
