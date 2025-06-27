@@ -11,6 +11,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
+import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
 
 
 public class ventanaProductos extends javax.swing.JFrame {
@@ -190,23 +192,38 @@ public class ventanaProductos extends javax.swing.JFrame {
     
     
     private void eliminarProducto() {
-        if (productoSeleccionadoId != -1) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este producto?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                try {
-                    control.eliminarProducto(productoSeleccionadoId);
-                    JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    cargarTabla();
-                    limpiarCampos();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
+    if (productoSeleccionadoId != -1) {
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este producto?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            try {
+                control.eliminarProducto(productoSeleccionadoId);
+                // Si la eliminación fue exitosa (no se lanzó ninguna excepción)
+                JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                cargarTabla();
+                limpiarCampos();
+            } catch (IllegalOrphanException e) {
+                JOptionPane.showMessageDialog(this,
+                    "No se puede eliminar el producto porque está relacionado con una o más órdenes.",
+                    "Error al eliminar",
+                    JOptionPane.WARNING_MESSAGE);
+            } catch (NonexistentEntityException e) {
+                JOptionPane.showMessageDialog(this,
+                    "El producto ya no existe.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                // Captura cualquier otra excepción inesperada
+                JOptionPane.showMessageDialog(this,
+                    "Error inesperado al eliminar el producto: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace(); // Esto es útil para depuración
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un producto de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un producto de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }
+}
     
     
     

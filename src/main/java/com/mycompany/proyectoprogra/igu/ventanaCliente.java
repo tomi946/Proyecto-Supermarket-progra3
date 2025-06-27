@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 
 
 public class ventanaCliente extends javax.swing.JFrame {
@@ -227,15 +228,27 @@ public class ventanaCliente extends javax.swing.JFrame {
     }
     
      private void eliminarCliente() {
-        if (clienteSeleccionadoId != -1) {
+    if (clienteSeleccionadoId != -1) {
+        try {
             control.eliminarCliente(clienteSeleccionadoId);
-            JOptionPane.showMessageDialog(this, "Cliente eliminado.");
+            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
             cargarTabla();
             limpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un cliente de la tabla.");
+        } catch (IllegalOrphanException e) {
+            JOptionPane.showMessageDialog(this,
+                "No se puede eliminar el cliente porque tiene órdenes relacionadas.",
+                "Error de eliminación",
+                JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                "Error al intentar eliminar el cliente: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un cliente de la tabla.");
     }
+}
     
     private void modificarCliente() {
     if (clienteSeleccionadoId != -1) {

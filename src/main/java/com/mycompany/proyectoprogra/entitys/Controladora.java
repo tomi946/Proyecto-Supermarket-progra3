@@ -31,17 +31,13 @@ public void agregarCliente(String nombre_cliente) throws Exception{
     controladoraPao.agregarCliente(cliente);
 }
 
-public void eliminarCliente(long id){
-    try {
-        controladoraPao.borrarCliente(id);
-    } catch (IllegalOrphanException ex) {
-        Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
-    }
+public void eliminarCliente(long id) throws IllegalOrphanException, NonexistentEntityException {
+    controladoraPao.borrarCliente(id);
 }
 
 public void modificarCliente(long id, String nuevoNombre) throws Exception { 
         try {
-            controladoraPao.modificarCliente(id, nuevoNombre); // Llama al método de ControladoraController
+            controladoraPao.modificarCliente(id, nuevoNombre); 
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, "Cliente no encontrado para modificar (desde Controladora)", ex);
             throw ex; 
@@ -61,12 +57,8 @@ public void agregarProducto(String nombreProducto, double precioUnitario,Categor
     controladoraPao.agregarProducto(producto);
 }
 
-public void eliminarProducto(long idProducto) {
-    try {
-        controladoraPao.borrarProducto(idProducto);
-    } catch (Exception ex) {
-        Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
-    }
+public void eliminarProducto(long idProducto) throws IllegalOrphanException, NonexistentEntityException {
+      controladoraPao.borrarProducto(idProducto);
 }
 
 public void modificarProducto(long idProducto, String nuevoNombre, double precioUnitario, Categorias nuevaCategoria) throws Exception {

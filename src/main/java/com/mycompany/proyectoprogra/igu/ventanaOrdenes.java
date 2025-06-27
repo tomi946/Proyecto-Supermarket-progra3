@@ -663,7 +663,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     private javax.swing.JButton GuardarBTN;
     private javax.swing.JButton agregarBTN;
     private javax.swing.JTextField cantidadTXT;
-    private javax.swing.JComboBox clientesCombo;
+    private javax.swing.JComboBox<String> clientesCombo;
     private javax.swing.Box.Filler filler1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox1;

@@ -74,13 +74,11 @@ public class ControladoraController {
         productoPao.create(producto);
     }
     
-    public void borrarProducto(long idProducto){
-        try {
+    public void borrarProducto(long idProducto) throws IllegalOrphanException{
+        try{
             productoPao.destroy(idProducto);
-        } catch (IllegalOrphanException ex) {
-            Logger.getLogger(ControladoraController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ControladoraController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(NonexistentEntityException ex){
+            System.out.println("Ha ocurrido un error al eliminar el cliente: " + ex.getMessage());
         }
     }
     
