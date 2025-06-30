@@ -12,9 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
+import interfaces.IVentana;
 
 
-public class ventanaCliente extends javax.swing.JFrame {
+public class ventanaCliente extends javax.swing.JFrame implements IVentana {
     
     Controladora control = new Controladora();
     private long clienteSeleccionadoId = -1;
@@ -37,6 +38,7 @@ public class ventanaCliente extends javax.swing.JFrame {
         initComponents();
     }
     
+    @Override
     public void cargarTabla() {
         String[] columnas = {"ID", "Nombre"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
@@ -50,7 +52,8 @@ public class ventanaCliente extends javax.swing.JFrame {
         tableClientes.setModel(modelo);
     }
     
-    private void limpiarCampos() {
+    @Override
+    public void limpiarCampos() {
         NombreTXT.setText("");
         clienteSeleccionadoId = -1;
     }
@@ -285,7 +288,6 @@ public class ventanaCliente extends javax.swing.JFrame {
 
     private void EliminarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBTNMouseClicked
         eliminarCliente();
-        
     }//GEN-LAST:event_EliminarBTNMouseClicked
 
     private void volverBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBTNActionPerformed

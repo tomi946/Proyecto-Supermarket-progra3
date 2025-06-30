@@ -1,6 +1,7 @@
 
 package com.mycompany.proyectoprogra.controllers;
 
+import IDao.IOrdenes;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
 import com.mycompany.proyectoprogra.controllers.exceptions.PreexistingEntityException;
@@ -24,7 +25,7 @@ import java.util.List;
  *
  * @author totol
  */
-public class OrdenesJpaController implements Serializable {
+public class OrdenesJpaController implements Serializable, IOrdenes {
 
     public OrdenesJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -39,6 +40,7 @@ public class OrdenesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+    @Override
     public void create(Ordenes ordenes) throws PreexistingEntityException, Exception {
         if (ordenes.getDetalleordenesCollection() == null) {
             ordenes.setDetalleordenesCollection(new ArrayList<Detalleordenes>());
@@ -94,6 +96,7 @@ public class OrdenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Ordenes ordenes) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -178,6 +181,7 @@ public class OrdenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public void destroy(long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -220,10 +224,12 @@ public class OrdenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Ordenes> findOrdenesEntities() {
         return findOrdenesEntities(true, -1, -1);
     }
 
+    @Override
     public List<Ordenes> findOrdenesEntities(int maxResults, int firstResult) {
         return findOrdenesEntities(false, maxResults, firstResult);
     }
@@ -244,6 +250,7 @@ public class OrdenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public Ordenes findOrdenes(long id) {
         EntityManager em = getEntityManager();
         try {
@@ -253,6 +260,7 @@ public class OrdenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public int getOrdenesCount() {
         EntityManager em = getEntityManager();
         try {

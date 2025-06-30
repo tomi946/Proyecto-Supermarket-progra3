@@ -5,6 +5,7 @@ import com.mycompany.proyectoprogra.entitys.Clientes;
 import com.mycompany.proyectoprogra.entitys.Controladora;
 import com.mycompany.proyectoprogra.entitys.Detalleordenes;
 import com.mycompany.proyectoprogra.entitys.Productos;
+import interfaces.IVentana;
 import static java.awt.SystemColor.control;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ventanaOrdenes extends javax.swing.JFrame {
+public class ventanaOrdenes extends javax.swing.JFrame implements IVentana {
     
     private List<Detalleordenes> detallesTemp = new ArrayList<>();
     Controladora control = new Controladora();
@@ -50,13 +51,14 @@ public class ventanaOrdenes extends javax.swing.JFrame {
         jTable1.setModel(modelo);
     }
     
-    public void cargarProductos() {
+    @Override
+    public void cargarTabla() {
         try {
             List<Productos> listaProductos = control.traerProductos(); 
 
             SwingUtilities.invokeLater(() -> {
                 DefaultTableModel modelo = new DefaultTableModel(
-                    new Object[]{"ID", "Nombre", "Categoría", "Precio Unitario"}, 0
+                    new Object[]{"ID", "Nombre", "Categoria", "Precio Unitario"}, 0
                 );
 
                 for (Productos p : listaProductos) {
@@ -65,7 +67,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                         p.getNombreProducto(),
                         p.getIdCategoria() != null
                             ? p.getIdCategoria().getCategoria() + " - " + p.getIdCategoria().getSubcategoria()
-                            : "Sin Categoría",
+                            : "Sin Categoria",
                         p.getPrecioUnitario()
                     };
                     modelo.addRow(fila);
@@ -92,8 +94,6 @@ public class ventanaOrdenes extends javax.swing.JFrame {
                     "Retiro en Sucursal",
                     "Internacional"
                 };
-
-                
                 SwingUtilities.invokeLater(() -> {
                     jComboBox1.setModel(new DefaultComboBoxModel<>(modosEnvio));
                 });
@@ -663,7 +663,7 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     private javax.swing.JButton GuardarBTN;
     private javax.swing.JButton agregarBTN;
     private javax.swing.JTextField cantidadTXT;
-    private javax.swing.JComboBox<String> clientesCombo;
+    private javax.swing.JComboBox clientesCombo;
     private javax.swing.Box.Filler filler1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -687,4 +687,9 @@ public class ventanaOrdenes extends javax.swing.JFrame {
     private javax.swing.JLabel total_orden;
     private javax.swing.JButton volverBTN;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void limpiarCampos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

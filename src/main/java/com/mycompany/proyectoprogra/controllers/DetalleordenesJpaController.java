@@ -1,6 +1,7 @@
 
 package com.mycompany.proyectoprogra.controllers;
 
+import IDao.IDetalleOrdenes;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
 import com.mycompany.proyectoprogra.controllers.exceptions.PreexistingEntityException;
 import com.mycompany.proyectoprogra.entitys.Detalleordenes;
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author totol
  */
-public class DetalleordenesJpaController implements Serializable {
+public class DetalleordenesJpaController implements Serializable, IDetalleOrdenes {
 
     public DetalleordenesJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -36,6 +37,7 @@ public class DetalleordenesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+    @Override
     public void create(Detalleordenes detalleordenes) throws PreexistingEntityException, Exception {
         if (detalleordenes.getDetalleordenesPK() == null) {
             detalleordenes.setDetalleordenesPK(new DetalleordenesPK());
@@ -78,6 +80,7 @@ public class DetalleordenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Detalleordenes detalleordenes) throws NonexistentEntityException, Exception {
         detalleordenes.getDetalleordenesPK().setIdOrden(detalleordenes.getOrdenes().getIdOrden());
         detalleordenes.getDetalleordenesPK().setIdProducto(detalleordenes.getProductos().getIdProducto());
@@ -132,6 +135,7 @@ public class DetalleordenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public void destroy(DetalleordenesPK id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -163,10 +167,12 @@ public class DetalleordenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Detalleordenes> findDetalleordenesEntities() {
         return findDetalleordenesEntities(true, -1, -1);
     }
 
+    @Override
     public List<Detalleordenes> findDetalleordenesEntities(int maxResults, int firstResult) {
         return findDetalleordenesEntities(false, maxResults, firstResult);
     }
@@ -187,6 +193,7 @@ public class DetalleordenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public Detalleordenes findDetalleordenes(DetalleordenesPK id) {
         EntityManager em = getEntityManager();
         try {
@@ -196,6 +203,7 @@ public class DetalleordenesJpaController implements Serializable {
         }
     }
 
+    @Override
     public int getDetalleordenesCount() {
         EntityManager em = getEntityManager();
         try {

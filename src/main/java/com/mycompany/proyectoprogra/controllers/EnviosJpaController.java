@@ -1,6 +1,7 @@
 
 package com.mycompany.proyectoprogra.controllers;
 
+import IDao.IEnvios;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
 import com.mycompany.proyectoprogra.controllers.exceptions.PreexistingEntityException;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @author totol
  */
-public class EnviosJpaController implements Serializable {
+public class EnviosJpaController implements Serializable, IEnvios{
 
     public EnviosJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -37,6 +38,7 @@ public class EnviosJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+    @Override
     public void create(Envios envios) throws PreexistingEntityException, Exception {
         if (envios.getOrdenesCollection() == null) {
             envios.setOrdenesCollection(new ArrayList<Ordenes>());
@@ -74,6 +76,7 @@ public class EnviosJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Envios envios) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -130,6 +133,7 @@ public class EnviosJpaController implements Serializable {
         }
     }
 
+    @Override
     public void destroy(long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -162,10 +166,12 @@ public class EnviosJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Envios> findEnviosEntities() {
         return findEnviosEntities(true, -1, -1);
     }
 
+    @Override
     public List<Envios> findEnviosEntities(int maxResults, int firstResult) {
         return findEnviosEntities(false, maxResults, firstResult);
     }
@@ -186,6 +192,7 @@ public class EnviosJpaController implements Serializable {
         }
     }
 
+    @Override
     public Envios findEnvios(long id) {
         EntityManager em = getEntityManager();
         try {
@@ -195,6 +202,7 @@ public class EnviosJpaController implements Serializable {
         }
     }
 
+    @Override
     public int getEnviosCount() {
         EntityManager em = getEntityManager();
         try {

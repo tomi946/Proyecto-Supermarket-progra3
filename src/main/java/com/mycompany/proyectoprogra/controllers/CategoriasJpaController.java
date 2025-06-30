@@ -17,12 +17,10 @@ import jakarta.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import IDao.ICategoriasDao;
 
-/**
- *
- * @author totol
- */
-public class CategoriasJpaController implements Serializable {
+
+public class CategoriasJpaController implements Serializable, ICategoriasDao {
 
     public CategoriasJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -37,6 +35,7 @@ public class CategoriasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+    @Override
     public void create(Categorias categorias) throws PreexistingEntityException, Exception {
         if (categorias.getProductosCollection() == null) {
             categorias.setProductosCollection(new ArrayList<Productos>());
@@ -74,6 +73,7 @@ public class CategoriasJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Categorias categorias) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -130,6 +130,7 @@ public class CategoriasJpaController implements Serializable {
         }
     }
 
+    @Override
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -162,10 +163,12 @@ public class CategoriasJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Categorias> findCategoriasEntities() {
         return findCategoriasEntities(true, -1, -1);
     }
 
+    @Override
     public List<Categorias> findCategoriasEntities(int maxResults, int firstResult) {
         return findCategoriasEntities(false, maxResults, firstResult);
     }
@@ -186,6 +189,7 @@ public class CategoriasJpaController implements Serializable {
         }
     }
 
+    @Override
     public Categorias findCategorias(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -195,6 +199,7 @@ public class CategoriasJpaController implements Serializable {
         }
     }
 
+    @Override
     public int getCategoriasCount() {
         EntityManager em = getEntityManager();
         try {

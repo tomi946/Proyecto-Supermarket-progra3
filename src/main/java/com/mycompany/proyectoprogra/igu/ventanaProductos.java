@@ -13,9 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
+import interfaces.IVentana;
 
 
-public class ventanaProductos extends javax.swing.JFrame {
+public class ventanaProductos extends javax.swing.JFrame implements IVentana {
     
     Controladora control = new Controladora();
     private long productoSeleccionadoId = -1;
@@ -47,7 +48,7 @@ public class ventanaProductos extends javax.swing.JFrame {
         }
     }
     
-    
+    @Override
     public void cargarTabla() {
         
         String[] columnas = {"ID", "Nombre", "Categoría", "Precio Unitario"};
@@ -67,7 +68,8 @@ public class ventanaProductos extends javax.swing.JFrame {
         tableProductos.setModel(modelo);
     }
     
-   private void limpiarCampos() {
+    @Override
+     public void limpiarCampos() {
         NombreTXT.setText("");
         precioTXT.setText(""); 
         categoriaCombo.setSelectedIndex(-1); 

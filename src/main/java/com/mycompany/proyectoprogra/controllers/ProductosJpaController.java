@@ -1,6 +1,7 @@
 
 package com.mycompany.proyectoprogra.controllers;
 
+import IDao.IProductos;
 import com.mycompany.proyectoprogra.controllers.exceptions.IllegalOrphanException;
 import com.mycompany.proyectoprogra.controllers.exceptions.NonexistentEntityException;
 import java.io.Serializable;
@@ -18,11 +19,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author totol
- */
-public class ProductosJpaController implements Serializable {
+
+public class ProductosJpaController implements Serializable, IProductos {
 
     public ProductosJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -37,6 +35,7 @@ public class ProductosJpaController implements Serializable {
         emf = com.mycompany.proyectoprogra.controllers.JpaUtil.getEntityManagerFactory();
     }
 
+    @Override
     public void create(Productos productos) {
         if (productos.getDetalleordenesCollection() == null) {
             productos.setDetalleordenesCollection(new ArrayList<Detalleordenes>());
@@ -78,6 +77,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Productos productos) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -148,6 +148,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
+    @Override
     public void destroy(long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -185,10 +186,12 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Productos> findProductosEntities() {
         return findProductosEntities(true, -1, -1);
     }
 
+    @Override
     public List<Productos> findProductosEntities(int maxResults, int firstResult) {
         return findProductosEntities(false, maxResults, firstResult);
     }
@@ -209,6 +212,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
+    @Override
     public Productos findProductos(long id) {
         EntityManager em = getEntityManager();
         try {
@@ -218,6 +222,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
+    @Override
     public int getProductosCount() {
         EntityManager em = getEntityManager();
         try {

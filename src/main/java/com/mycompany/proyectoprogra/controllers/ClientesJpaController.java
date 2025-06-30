@@ -18,12 +18,13 @@ import jakarta.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import IDao.IClientesDao;
 
 /**
  *
  * @author totol
  */
-public class ClientesJpaController implements Serializable {
+public class ClientesJpaController implements Serializable, IClientesDao {
 
     public ClientesJpaController(EntityManagerFactory emf) {
         this.emf = emf;
@@ -37,6 +38,8 @@ public class ClientesJpaController implements Serializable {
     public ClientesJpaController() {
         emf = com.mycompany.proyectoprogra.controllers.JpaUtil.getEntityManagerFactory();
     }
+    
+    @Override
     public void create(Clientes clientes) throws PreexistingEntityException, Exception {
         if (clientes.getOrdenesCollection() == null) {
             clientes.setOrdenesCollection(new ArrayList<Ordenes>());
@@ -74,6 +77,7 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
+    @Override
     public void edit(Clientes clientes) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -130,6 +134,8 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
+    
+    @Override
     public void destroy(long id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -162,6 +168,7 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
+    @Override
     public List<Clientes> findClientesEntities() {
         return findClientesEntities(true, -1, -1);
     }
@@ -186,6 +193,7 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
+    @Override
     public Clientes findClientes(long id) {
         EntityManager em = getEntityManager();
         try {
@@ -195,6 +203,7 @@ public class ClientesJpaController implements Serializable {
         }
     }
     
+    @Override
     public Clientes findClienteConOrdenes(long id) {
     EntityManager em = getEntityManager();
     try {
@@ -209,6 +218,7 @@ public class ClientesJpaController implements Serializable {
     }
 }
 
+    @Override
     public int getClientesCount() {
         EntityManager em = getEntityManager();
         try {

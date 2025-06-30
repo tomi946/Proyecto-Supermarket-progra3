@@ -6,6 +6,7 @@ import com.mycompany.proyectoprogra.entitys.Categorias;
 import com.mycompany.proyectoprogra.entitys.Clientes;
 import com.mycompany.proyectoprogra.entitys.Controladora;
 import com.mycompany.proyectoprogra.entitys.Detalleordenes;
+import interfaces.IVentana;
 import static java.awt.SystemColor.control;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-public class ventanaDetalleOrdenes extends javax.swing.JFrame {
+public class ventanaDetalleOrdenes extends javax.swing.JFrame implements IVentana {
     
     Controladora control = new Controladora();
     private long clienteSeleccionadoId = -1;
@@ -39,13 +40,13 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
              }
            });
         
-        cargarTablaDetalleOrdenes();
+        cargarTabla();
         cargarCategoriasEnCombo();
     }
     
     public ventanaDetalleOrdenes() {
         initComponents();
-        cargarTablaDetalleOrdenes();
+        cargarTabla();
     }
     
     private void cargarCategoriasEnCombo() {
@@ -56,7 +57,9 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
         }
     }
     
-    public void cargarTablaDetalleOrdenes() {
+    
+    @Override
+    public void cargarTabla() {
         String[] columnas = {
             "ID Orden", 
             "ID Cliente",
@@ -360,7 +363,7 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
         if (categoriaSelect.getItemCount() > 0) {
             categoriaSelect.setSelectedIndex(0);
         }
-        cargarTablaDetalleOrdenes();
+        cargarTabla();
     }//GEN-LAST:event_limpiarFiltroBTNActionPerformed
 
     private void filtrarBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarBTN1ActionPerformed
@@ -434,4 +437,13 @@ public class ventanaDetalleOrdenes extends javax.swing.JFrame {
     private javax.swing.JTable tableDetalle;
     private javax.swing.JButton volverBTN;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void limpiarCampos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
+   
 }
